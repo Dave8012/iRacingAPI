@@ -1,6 +1,7 @@
 from flask import Flask
 from flasgger import Swagger
-from api.route.info import info_api
+from api.route.license import license_api
+from api.route.race import race_api
 
 
 def create_app():
@@ -13,7 +14,8 @@ def create_app():
 
     # Initialize Config
     app.config.from_pyfile('config.py')
-    app.register_blueprint(info_api, url_prefix='/info')
+    app.register_blueprint(license_api, url_prefix='/license')
+    app.register_blueprint(race_api, url_prefix='/race')
 
     return app
 

@@ -79,9 +79,19 @@ class IRacingAPI:
                 raise RuntimeError("Error from iRacing: ", response_data)
 
     # API Methods
+    def get_customer_id(self):
+        member_info = self.get_member_info()
+        cust_id = member_info['cust_id']
+        return cust_id
+
     def get_licenses(self):
         return self._get_resource("/data/lookup/licenses")
 
     def get_member_info(self):
         return self._get_resource("/data/member/info")
+
+    def get_recent_races(self):
+        cust_id = self.get_customer_id()
+        payload = {"cust_id": cust_id}
+        return self._get_resource("/data/stats/member_recent_races", payload=payload)
 

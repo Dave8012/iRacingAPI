@@ -4,10 +4,10 @@ from flasgger import swag_from
 from api.model.license import LicenseModel
 from api.schema.license import LicenseSchema
 
-info_api = Blueprint('info', __name__)
+license_api = Blueprint('license', __name__)
 
 
-@info_api.route('/')
+@license_api.route('/')
 @swag_from({
     'responses': {
         HTTPStatus.OK.value: {
