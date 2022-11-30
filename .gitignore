@@ -1,0 +1,7 @@
+# Environments
+venv/
+.env
+
+# Testing
+zTesting-Delete/
+/.idea/
