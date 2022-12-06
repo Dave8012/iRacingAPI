@@ -20,13 +20,13 @@ class LicenseModel:
         member_info_json = self.api_instance.get_member_info()
 
         # Extracting JSON data
-        license_json = member_info_json['licenses']
-        oval_info = license_json['oval']
-        road_info = license_json['road']
+        license_json = member_info_json["licenses"]
+        oval_info = license_json["oval"]
+        road_info = license_json["road"]
 
         # Setting values
-        self.oval_safety_rating = oval_info['safety_rating']
-        self.oval_irating = oval_info['irating']
-        self.road_safety_rating = road_info['safety_rating']
-        self.road_irating = road_info['irating']
+        self.oval_safety_rating = oval_info["safety_rating"]
+        self.oval_irating = oval_info["irating"]
+        self.road_safety_rating = road_info["safety_rating"]
+        self.road_irating = road_info["irating"]
 

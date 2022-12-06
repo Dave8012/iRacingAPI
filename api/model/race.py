@@ -8,10 +8,10 @@ class RaceModel:
         IR_USERNAME = os.getenv('IR_USERNAME')
         IR_ENCODED_PASSWORD = os.getenv('IR_ENCODED_PASSWORD')
 
-        self.message = "Check out my recent races!"
+        self.message = "Information about the last 10 races"
         self.api_instance = IRacingAPI(IR_USERNAME, IR_ENCODED_PASSWORD)
         self.recent_race_list = None
-        self.formatted_race_list = {'races': []}
+        self.race_list = None
         self.fill_race_info()
 
     def fill_race_info(self):
@@ -21,19 +21,22 @@ class RaceModel:
 
     def extract_recent_race_info(self):
 
-        races = self.recent_race_list['races']
+        parsed_races = []
+        recent_race_list = self.recent_race_list["races"]
 
-        for race in races:
+        for race in recent_race_list:
 
-            print("RACE: " + str(race))
-            data = {}
-            data['series_name'] = race['series_name']
-            data['track_name'] = race['track']['track_name']
-            data['finish_position'] = race['finish_position']
-            data['start_position'] = race['start_position']
-            data['incidents'] = race['incidents']
+            data = {
+                "series_name": race["series_name"],
+                "track_name": race["track"]["track_name"],
+                "finish_position": race["finish_position"],
+                "start_position": race["start_position"],
+                "incidents": race["incidents"]
+            }
 
-            self.formatted_race_list['races'].append(data)
+            parsed_races.append(data)
+
+        self.race_list = parsed_races
 
 
 
