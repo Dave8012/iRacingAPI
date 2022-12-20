@@ -4,22 +4,16 @@ from api.route.license import license_api
 from api.route.race import race_api
 
 
-def create_app():
-    app = Flask(__name__)
+app = Flask(__name__)
 
-    app.config['SWAGGER'] = {
-        'title': 'iRacing API Docs',
-    }
-    swagger = Swagger(app)
+app.config['SWAGGER'] = {
+    'title': 'iRacing API Docs',
+}
+swagger = Swagger(app)
 
-    # Initialize Config
-    app.config.from_pyfile('config.py')
-    app.register_blueprint(license_api, url_prefix='/license')
-    app.register_blueprint(race_api, url_prefix='/race')
+# Initialize Config
+app.config.from_pyfile('config.py')
+app.register_blueprint(license_api, url_prefix='/license')
+app.register_blueprint(race_api, url_prefix='/race')
 
-    return app
-
-
-if __name__ == '__main__':
-    app = create_app()
 
